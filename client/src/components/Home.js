@@ -1,59 +1,46 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React, {useState} from 'react' 
+import { View, Text, StyleSheet, TextInput } from 'react-native'
 
 const Home = () => {
-  const navigation = useNavigation();
 
-  const meditationTypes = [
-    'Mindful Breathing',
-    'Guided Meditation',
-    'Body Scan Meditation',
-    'Loving-Kindness Meditation (Metta)',
-    'Transcendental Meditation (TM)',
-    'Zen Meditation (Zazen)',
-  ];
-
-    const handleMeditationPress = (type) => {
-      console.log(type)
-      navigation.navigate('MeditationScreen', {meditationType: type});
-
-    };
-    
+  const [text, setInputText] = useState()
 
   return (
-    <View style={styles.container}>
-      {meditationTypes.map((type, index) => (
-        <TouchableOpacity
-          key={index}
-          style={styles.item}
-          onPress={()=> handleMeditationPress(type)}
-        >
-          <Text>{type}</Text>
-        </TouchableOpacity>
-      ))}
+    <View style = {styles.container}>
+      <View>
+        <View style = {styles.todoContainer}>
+          <TextInput 
+            placeholder = "Enter task"
+            onChangeText={(inputText) => setInputText(inputText)}
+            value = {text}
+            style = {styles.inputField}
+            >
+
+          </TextInput>
+          <Text>Hi</Text>
+        </View>
+      </View>
     </View>
-  );
-};
+  )
+}
 
-const styles = StyleSheet.create({
+const styles = {
   container: {
-    flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    alignItems: 'center',
+    borderWidth: 2,          // Border width
+    borderColor: 'black',    // Border color
+    borderRadius: 10,        // Border radius (for rounded corners)
+    padding: 10,             // Padding inside the container
+    height: '100%'
   },
-  item: {
-    width: '45%',
-    height: '30%',
-    margin: 10,
-    backgroundColor: '#e0e0e0',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#ccc',
-  },
-});
-
+  inputField: {
+    marginTop: 20,
+    borderWidth: 2,          // Border width
+    borderColor: 'black',    // Border color
+    borderRadius: 10,        // Border radius (for rounded corners)
+    padding: 10,             // Padding inside the container
+  }, 
+  todoContainer: {
+    
+  }
+};
 export default Home;
